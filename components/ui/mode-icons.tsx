@@ -107,6 +107,75 @@ export function VibeIcon(p: SVGProps) {
   )
 }
 
+// Rain on Glass — drop with sliding trail
+export function RainIcon(p: SVGProps) {
+  return (
+    <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" {...p}>
+      <path d="M9 2.5 C10.4 4.2 11.2 5.5 11.2 6.8 A2.2 2.2 0 0 1 6.8 6.8 C6.8 5.5 7.6 4.2 9 2.5 Z" fill="currentColor" stroke="none" />
+      <line x1="9" y1="9.5" x2="8.4" y2="15" strokeWidth="1.3" opacity="0.55" />
+      <line x1="3" y1="10" x2="15" y2="10" strokeWidth="1" opacity="0.3" />
+      <circle cx="4.5" cy="13.5" r="1" fill="currentColor" stroke="none" opacity="0.6" />
+      <circle cx="13" cy="12" r="0.8" fill="currentColor" stroke="none" opacity="0.45" />
+    </svg>
+  )
+}
+
+// Hydro — liquid wave with gravity arrow
+export function AuroraIcon(p: SVGProps) {
+  return (
+    <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" {...p}>
+      <line x1="9" y1="1.5" x2="9" y2="5.5" strokeWidth="1.3" />
+      <path d="M7 4 L9 6.5 L11 4" strokeWidth="1.3" />
+      <path d="M1.5 11 C4 9 6.5 13 9.5 11 C12.5 9 14.5 12 16.5 10.5" strokeWidth="1.5" />
+      <path d="M1.5 11 C4 13 6.5 9 9.5 11 C12.5 13 14.5 10 16.5 11.5 L16.5 16.5 L1.5 16.5 Z"
+        fill="currentColor" stroke="none" opacity="0.28" />
+    </svg>
+  )
+}
+
+// Bioluminescent Tide — glowing dots in dark water
+export function BiolumIcon(p: SVGProps) {
+  return (
+    <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeLinecap="round" {...p}>
+      <circle cx="6"  cy="11" r="1.4" fill="currentColor" stroke="none" />
+      <circle cx="6"  cy="11" r="3.2" strokeWidth="0.8" opacity="0.35" />
+      <circle cx="12" cy="7"  r="1.1" fill="currentColor" stroke="none" />
+      <circle cx="12" cy="7"  r="2.7" strokeWidth="0.8" opacity="0.30" />
+      <circle cx="14" cy="13" r="0.8" fill="currentColor" stroke="none" opacity="0.7" />
+      <circle cx="3.5" cy="5.5" r="0.7" fill="currentColor" stroke="none" opacity="0.5" />
+      <circle cx="9" cy="14.5" r="0.6" fill="currentColor" stroke="none" opacity="0.4" />
+    </svg>
+  )
+}
+
+// Soap Bubbles — two iridescent spheres with specular arc
+export function BubblesIcon(p: SVGProps) {
+  return (
+    <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" {...p}>
+      <circle cx="7.5" cy="10.5" r="5"   strokeWidth="1.3" />
+      <path   d="M5 8 Q7 6.5 9 8"         strokeWidth="1"   opacity="0.55" />
+      <circle cx="13"  cy="5.5"  r="3"   strokeWidth="1.1" />
+      <path   d="M11.5 4 Q13 3 14.5 4"   strokeWidth="0.9" opacity="0.5" />
+    </svg>
+  )
+}
+
+// Ember Glow — coal bed with rising sparks
+export function EmberIcon(p: SVGProps) {
+  return (
+    <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeLinecap="round" {...p}>
+      <circle cx="4"   cy="15"   r="1.4" fill="currentColor" stroke="none" />
+      <circle cx="8"   cy="14.5" r="1.7" fill="currentColor" stroke="none" />
+      <circle cx="12"  cy="15"   r="1.3" fill="currentColor" stroke="none" />
+      <circle cx="15"  cy="14"   r="1"   fill="currentColor" stroke="none" opacity="0.7" />
+      <circle cx="6.5" cy="10"   r="0.8" fill="currentColor" stroke="none" opacity="0.65" />
+      <circle cx="10"  cy="7"    r="0.65" fill="currentColor" stroke="none" opacity="0.5" />
+      <circle cx="13"  cy="9.5"  r="0.7" fill="currentColor" stroke="none" opacity="0.55" />
+      <circle cx="8.5" cy="4"    r="0.5" fill="currentColor" stroke="none" opacity="0.32" />
+    </svg>
+  )
+}
+
 // Home — simple house outline
 export function HomeNavIcon(p: SVGProps) {
   return (

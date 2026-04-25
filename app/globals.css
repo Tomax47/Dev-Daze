@@ -68,6 +68,14 @@ canvas {
   25%, 75% { opacity: 1; }
 }
 
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 .tooltip-content {
   display: inline-block;
   white-space: nowrap;
