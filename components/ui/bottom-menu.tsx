@@ -111,13 +111,13 @@ export function MenuBar({ items, className, activeItemIndex, ...props }: MenuBar
     const offset = (TRIGGER_SIZE - ITEM_SIZE) / 2   // center items on trigger origin
 
     return (
-      <motion.div
+      <div
         ref={wrapperRef}
-        animate={shakeControls}
         className={cn("relative", className)}
         style={{ width: TRIGGER_SIZE, height: TRIGGER_SIZE }}
         {...props}
       >
+        <motion.div animate={shakeControls} style={{ position: "relative", width: "100%", height: "100%" }}>
         {/* Radial items */}
         <AnimatePresence>
           {isExpanded && items.map((item, index) => {
@@ -225,7 +225,8 @@ export function MenuBar({ items, className, activeItemIndex, ...props }: MenuBar
             )}
           </AnimatePresence>
         </motion.button>
-      </motion.div>
+        </motion.div>
+      </div>
     )
   }
 
