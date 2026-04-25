@@ -7,6 +7,7 @@ import { GridPixelateBg } from "@/components/ui/grid-pixelate-bg";
 import {
   HomeNavIcon, NebulaIcon, BlackHoleIcon, RippleIcon, GravityIcon,
   LavaLampIcon, SandIcon, KaleidoscopeIcon, LiquidIcon, VibeIcon,
+  RainIcon, AuroraIcon, BiolumIcon, BubblesIcon, EmberIcon,
 } from "@/components/ui/mode-icons";
 import { ParticleNebula } from "@/components/modes/particle-nebula";
 import { BlackHole } from "@/components/modes/black-hole";
@@ -17,8 +18,14 @@ import { LavaLamp } from "@/components/modes/lava-lamp";
 import { SandFall } from "@/components/modes/sand-fall";
 import { Kaleidoscope } from "@/components/modes/kaleidoscope";
 import { Liquid } from "@/components/modes/liquid";
+import { RainGlass } from "@/components/modes/rain-glass";
+import { GravityLiquid } from "@/components/modes/aurora";
+import { BiolumTide } from "@/components/modes/biolum-tide";
+import { SoapBubbles } from "@/components/modes/soap-bubbles";
+import { EmberGlow } from "@/components/modes/ember-glow";
 
-type Mode = "nebula" | "blackhole" | "ripple" | "gravity" | "lavalamp" | "sand" | "kaleidoscope" | "liquid" | "vibe";
+type Mode = "nebula" | "blackhole" | "ripple" | "gravity" | "lavalamp" | "sand" | "kaleidoscope" | "liquid" | "vibe"
+         | "rain" | "aurora" | "biolum" | "bubbles" | "embers";
 
 const SCREENS: Record<Mode, React.ReactNode> = {
   nebula:       <ParticleNebula />,
@@ -30,6 +37,11 @@ const SCREENS: Record<Mode, React.ReactNode> = {
   kaleidoscope: <Kaleidoscope />,
   liquid:       <Liquid />,
   vibe:         <VibeRoom />,
+  rain:         <RainGlass />,
+  aurora:       <GravityLiquid />,
+  biolum:       <BiolumTide />,
+  bubbles:      <SoapBubbles />,
+  embers:       <EmberGlow />,
 };
 
 const MODES: { id: Mode; label: string }[] = [
@@ -42,6 +54,11 @@ const MODES: { id: Mode; label: string }[] = [
   { id: "kaleidoscope", label: "Kaleidoscope" },
   { id: "liquid",       label: "Liquid"       },
   { id: "vibe",         label: "Vibe"         },
+  { id: "rain",         label: "Rain Glass"   },
+  { id: "aurora",       label: "Hydro"        },
+  { id: "biolum",       label: "Biolum Tide"  },
+  { id: "bubbles",      label: "Bubbles"      },
+  { id: "embers",       label: "Embers"       },
 ];
 
 const MODE_ICONS: Record<Mode, (p: React.SVGProps<SVGSVGElement>) => React.JSX.Element> = {
@@ -53,7 +70,12 @@ const MODE_ICONS: Record<Mode, (p: React.SVGProps<SVGSVGElement>) => React.JSX.E
   sand:         (p) => <SandIcon {...p} />,
   kaleidoscope: (p) => <KaleidoscopeIcon {...p} />,
   liquid:       (p) => <LiquidIcon {...p} />,
-  vibe:         (p) => <VibeIcon {...p} />,
+  vibe:         (p) => <VibeIcon    {...p} />,
+  rain:         (p) => <RainIcon    {...p} />,
+  aurora:       (p) => <AuroraIcon  {...p} />,
+  biolum:       (p) => <BiolumIcon  {...p} />,
+  bubbles:      (p) => <BubblesIcon {...p} />,
+  embers:       (p) => <EmberIcon   {...p} />,
 };
 
 function Landing() {
@@ -151,7 +173,7 @@ function Landing() {
         </span>
         <span style={{ width: 1, height: 9, background: "rgba(255,255,255,0.1)" }} />
         <span style={{ fontSize: 11, color: "rgba(255,255,255,0.16)", letterSpacing: "0.06em" }}>
-          9 modes · infinite vibes
+          14 modes · infinite vibes
         </span>
       </motion.footer>
     </motion.div>
