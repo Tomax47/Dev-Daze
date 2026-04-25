@@ -167,7 +167,7 @@ export function Kaleidoscope() {
       ctx.fillStyle = "rgba(255,255,255,0.14)";
       ctx.font = "13px system-ui";
       ctx.textAlign = "center";
-      ctx.fillText("Move cursor to paint · double-click to clear", cx, canvas.height - 20);
+      ctx.fillText("Move or touch to paint · double-click to clear", cx, canvas.height - 20);
 
       raf = requestAnimationFrame(draw);
     }
@@ -180,11 +180,27 @@ export function Kaleidoscope() {
       moveTimeout = setTimeout(() => { isMoving = false; }, 800);
     }
 
+    function onTouchMove(e: TouchEvent) {
+      e.preventDefault();
+      const t = e.touches[0];
+      mouse.x = t.clientX;
+      mouse.y = t.clientY;
+      isMoving = true;
+      clearTimeout(moveTimeout);
+      moveTimeout = setTimeout(() => { isMoving = false; }, 800);
+    }
+
+    function onTouchEnd() {
+      isMoving = false;
+    }
+
     function onDbl() {
       fill();
     }
 
     canvas.addEventListener("mousemove", onMove);
+    canvas.addEventListener("touchmove", onTouchMove, { passive: false });
+    canvas.addEventListener("touchend", onTouchEnd);
     canvas.addEventListener("dblclick", onDbl);
     window.addEventListener("resize", resize);
 
@@ -194,6 +210,8 @@ export function Kaleidoscope() {
       cancelAnimationFrame(raf);
       clearTimeout(moveTimeout);
       canvas.removeEventListener("mousemove", onMove);
+      canvas.removeEventListener("touchmove", onTouchMove);
+      canvas.removeEventListener("touchend", onTouchEnd);
       canvas.removeEventListener("dblclick", onDbl);
       window.removeEventListener("resize", resize);
     };

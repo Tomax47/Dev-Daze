@@ -67,7 +67,7 @@ export function Liquid() {
 
     /* ── Physically accurate splash ── */
     function splash(bx: number, bw: number, impactVy: number) {
-      const strength     = Math.min(72, impactVy * 0.85 + bw * 0.50);
+      const strength     = Math.min(45, impactVy * 0.55 + bw * 0.30);
       const nodeSpacing  = W() / NODES;
       const halfBrick    = Math.ceil((bw / 2) / nodeSpacing);
       const outerCrown   = halfBrick + 10;
@@ -78,11 +78,11 @@ export function Liquid() {
         const dist = Math.abs(i - ni);
         if (dist <= halfBrick) {
           // Direct impact zone — depress the surface
-          nodes[i].vy += strength * 1.4 * (1 - dist / Math.max(1, halfBrick));
+          nodes[i].vy += strength * 0.95 * (1 - dist / Math.max(1, halfBrick));
         } else {
           // Crown precursor — slight upward kick just outside impact
           const od = dist - halfBrick;
-          nodes[i].vy -= strength * 0.35 * Math.max(0, 1 - od / 10);
+          nodes[i].vy -= strength * 0.22 * Math.max(0, 1 - od / 10);
         }
       }
 
@@ -90,7 +90,7 @@ export function Liquid() {
       const half = bw / 2;
 
       // ② Crown spray — shoots from the two outer edges of the impact zone
-      const crownCount = Math.floor(strength * 1.8);
+      const crownCount = Math.floor(strength * 1.1);
       for (let side = -1; side <= 1; side += 2) {
         for (let j = 0; j < crownCount; j++) {
           // Angle fans outward from each edge: upper-left fan or upper-right fan
@@ -110,7 +110,7 @@ export function Liquid() {
       }
 
       // ③ Worthington jet — thin central column shooting straight up
-      const jetCount = Math.floor(strength * 0.55);
+      const jetCount = Math.floor(strength * 0.28);
       for (let j = 0; j < jetCount; j++) {
         const angle = -Math.PI / 2 + (Math.random() - 0.5) * 0.35;
         const spd   = strength * 0.85 + Math.random() * 3;
@@ -131,7 +131,7 @@ export function Liquid() {
       rings.push({ x: bx, sy, rx: 4,           ry: 1,           alpha: 0.40, hue });
 
       // ⑤ Air bubbles trapped by the impact
-      const bubbleCount = Math.floor(strength * 0.9);
+      const bubbleCount = Math.floor(strength * 0.5);
       for (let j = 0; j < bubbleCount; j++) {
         bubbles.push({
           x: bx + (Math.random() - 0.5) * bw * 0.8,
@@ -327,12 +327,6 @@ export function Liquid() {
 
       ctx.clearRect(0, 0, W(), H());
 
-      // Sky
-      const sky = ctx.createLinearGradient(0, 0, 0, REST());
-      sky.addColorStop(0, "#010612"); sky.addColorStop(1, "#030e22");
-      ctx.fillStyle = sky;
-      ctx.fillRect(0, 0, W(), REST());
-
       // Stars
       for (const s of stars) {
         const px = s.x * W(), py = s.y * H();
@@ -367,8 +361,8 @@ export function Liquid() {
 
       // Water gradient
       const water = ctx.createLinearGradient(0, REST(), 0, H());
-      water.addColorStop(0,    `hsla(${hue},75%,32%,0.80)`);
-      water.addColorStop(0.35, `hsla(${hue},70%,18%,0.92)`);
+      water.addColorStop(0,    `hsla(${hue},75%,32%,0.70)`);
+      water.addColorStop(0.35, `hsla(${hue},70%,18%,0.88)`);
       water.addColorStop(1,    `hsla(${hue+15},55%,7%,0.99)`);
       ctx.fillStyle = water; ctx.fillRect(0, 0, W(), H());
 

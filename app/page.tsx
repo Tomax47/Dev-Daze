@@ -88,7 +88,7 @@ function Landing() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           style={{
-            fontFamily: "LilitaOne, sans-serif",
+            fontFamily: "var(--font-lilita-one), sans-serif",
             fontSize: "clamp(62px, 12vw, 144px)",
             lineHeight: 0.9,
             color: "#fff",

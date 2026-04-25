@@ -149,7 +149,7 @@ export function SandFall() {
       ctx.font = "13px system-ui";
       ctx.textAlign = "center";
       ctx.fillText(
-        "Draw with mouse  ·  right-click to erase  ·  double-click to clear",
+        "Draw with mouse or touch  ·  right-click to erase  ·  double-click to clear",
         canvas.width / 2,
         canvas.height - 20
       );
@@ -175,11 +175,30 @@ export function SandFall() {
     function onCtx(e: MouseEvent) { e.preventDefault(); }
     function onDbl()  { grid.fill(0); }
 
+    function onTouchStart(e: TouchEvent) {
+      e.preventDefault();
+      const t = e.touches[0];
+      mouse.held = true;
+      mouse.erase = false;
+      mouse.x = t.clientX;
+      mouse.y = t.clientY;
+    }
+    function onTouchMove(e: TouchEvent) {
+      e.preventDefault();
+      const t = e.touches[0];
+      mouse.x = t.clientX;
+      mouse.y = t.clientY;
+    }
+    function onTouchEnd() { mouse.held = false; }
+
     canvas.addEventListener("mousedown", onDown);
     window.addEventListener("mousemove", onMove);
     window.addEventListener("mouseup", onUp);
     canvas.addEventListener("contextmenu", onCtx);
     canvas.addEventListener("dblclick", onDbl);
+    canvas.addEventListener("touchstart", onTouchStart, { passive: false });
+    canvas.addEventListener("touchmove", onTouchMove, { passive: false });
+    canvas.addEventListener("touchend", onTouchEnd);
 
     function onResize() {
       canvas.width = window.innerWidth;
@@ -196,6 +215,9 @@ export function SandFall() {
       window.removeEventListener("mouseup", onUp);
       canvas.removeEventListener("contextmenu", onCtx);
       canvas.removeEventListener("dblclick", onDbl);
+      canvas.removeEventListener("touchstart", onTouchStart);
+      canvas.removeEventListener("touchmove", onTouchMove);
+      canvas.removeEventListener("touchend", onTouchEnd);
       window.removeEventListener("resize", onResize);
     };
   }, []);
